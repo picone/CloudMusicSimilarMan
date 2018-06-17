@@ -12,3 +12,4 @@ class PlayListItem(scrapy.Item):
     comment_thread_id = scrapy.Field()
     create_time = scrapy.Field()
     update_time = scrapy.Field()
+    song_ids = scrapy.Field()

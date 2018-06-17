@@ -5,9 +5,11 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
+from pymongo.errors import DuplicateKeyError
 
 from NeteaseCloudMusic.items.PlayListItem import PlayListItem
 from NeteaseCloudMusic.items.UserProfileInfoItem import UserProfileInfoItem
+from NeteaseCloudMusic.items.song import SongItem, AlbumItem, ArtistItem
 
 
 class NeteaseCloudMusicPipeline(object):
@@ -36,5 +38,14 @@ class NeteaseCloudMusicPipeline(object):
         if isinstance(item, UserProfileInfoItem):
             self.db['user_profile_info'].replace_one({'id': item['id']}, dict(item), True)
         elif isinstance(item, PlayListItem):
-            self.db['play_list'].replace_one({'id': item['id']}, dict(item), True)
+            if 'song_ids' in item:
+                self.db['play_list'].update_one({'id': item['id']}, {'$set': {'song_ids': item['song_ids']}})
+            else:
+                self.db['play_list'].replace_one({'id': item['id']}, dict(item), True)
+        elif isinstance(item, SongItem):
+            self.db['song'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
+        elif isinstance(item, AlbumItem):
+            self.db['album'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
+        elif isinstance(item, ArtistItem):
+            self.db['artist'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
         return item

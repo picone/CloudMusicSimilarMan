@@ -9,8 +9,6 @@ from NeteaseCloudMusic.items.PlayListItem import PlayListItem
 from NeteaseCloudMusic.items.UserProfileInfoItem import UserProfileInfoItem
 from NeteaseCloudMusic.requests.WeapiRequest import WeapiRequest
 
-PLAY_LIST_LIMIT = 100
-
 user_profile_url = 'http://music.163.com/weapi/share/userprofile/info'
 
 
@@ -27,7 +25,7 @@ class MusicSpider(scrapy.Spider):
                 },
                 referer='http://music.163.com/m/user/%d' % i,
                 meta=dict(user_id=i),
-                ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) %s' % os.urandom(random.randint(20, 50)),
+                ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/%s' % os.urandom(random.randint(20, 50)),
             )
 
     def parse(self, response):

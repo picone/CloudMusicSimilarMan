@@ -6,7 +6,7 @@
 
 ### 爬虫器
 
-爬虫器使用[Scrapy](https://github.com/scrapy/scrapy)框架，爬取到的内容都存放到MongoDB中。[详细内容看https://github.com/picone/CloudMusicSimilarMan/NeteaseCloudMusicSpider](https://github.com/picone/CloudMusicSimilarMan/NeteaseCloudMusicSpider)。
+爬虫器使用[Scrapy](https://github.com/scrapy/scrapy)框架，爬取到的内容都存放到MongoDB中。[详细内容](https://github.com/picone/CloudMusicSimilarMan/tree/master/NeteaseCloudMusicSpider)。
 
 ### 后台服务
 
@@ -18,5 +18,5 @@
 
 ## LICENSE
 
-你可以在[GPL 3.0](https://github.com/picone/CloudMusicSimilarMan/LICENSE)许可下自由使用本项目。
+你可以在[GPL 3.0](https://github.com/picone/CloudMusicSimilarMan/blob/master/LICENSE)许可下自由使用本项目。
 
