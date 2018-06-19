@@ -39,7 +39,7 @@ class NeteaseCloudMusicPipeline(object):
             self.db['user_profile_info'].replace_one({'id': item['id']}, dict(item), True)
         elif isinstance(item, PlayListItem):
             if 'song_ids' in item:
-                self.db['play_list'].update_one({'id': item['id']}, {'$set': {'song_ids': item['song_ids']}})
+                self.db['play_list'].update_one({'id': item['id']}, {'$addToSet': {'song_ids': {'$each': item['song_ids']}}})
             else:
                 self.db['play_list'].replace_one({'id': item['id']}, dict(item), True)
         elif isinstance(item, SongItem):

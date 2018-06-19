@@ -17,7 +17,7 @@ class MusicSpider(scrapy.Spider):
     allowed_domains = ['music.163.com']
 
     def start_requests(self):
-        for i in range(3458918, 1000000000):
+        for i in range(6941323, 1000000000):
             yield WeapiRequest(
                 url=user_profile_url,
                 formdata={

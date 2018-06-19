@@ -55,7 +55,7 @@ SPIDER_MIDDLEWARES = {
 # Enable or disable downloader response
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'NeteaseCloudMusic.middlewares.ProxyMiddleware.ProxyMiddleware': 543,
+    #'NeteaseCloudMusic.middlewares.ProxyMiddleware.ProxyMiddleware': 543,
 }
 
 # Enable or disable extensions
