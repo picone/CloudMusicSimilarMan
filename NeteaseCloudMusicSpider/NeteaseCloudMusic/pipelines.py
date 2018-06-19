@@ -5,11 +5,13 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
-from pymongo.errors import DuplicateKeyError
+from pymongo.errors import BulkWriteError
 
 from NeteaseCloudMusic.items.PlayListItem import PlayListItem
 from NeteaseCloudMusic.items.UserProfileInfoItem import UserProfileInfoItem
 from NeteaseCloudMusic.items.song import SongItem, AlbumItem, ArtistItem
+
+BATCH_SIZE = 2000
 
 
 class NeteaseCloudMusicPipeline(object):
@@ -19,6 +21,9 @@ class NeteaseCloudMusicPipeline(object):
         self.mongo_db = mongo_db
         self.client = None
         self.db = None
+        self.song_item = []
+        self.artist_item = []
+        self.album_item = []
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -39,13 +44,35 @@ class NeteaseCloudMusicPipeline(object):
             self.db['user_profile_info'].replace_one({'id': item['id']}, dict(item), True)
         elif isinstance(item, PlayListItem):
             if 'song_ids' in item:
+                pass
                 self.db['play_list'].update_one({'id': item['id']}, {'$addToSet': {'song_ids': {'$each': item['song_ids']}}})
             else:
                 self.db['play_list'].replace_one({'id': item['id']}, dict(item), True)
         elif isinstance(item, SongItem):
-            self.db['song'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
+            self.song_item.append(dict(item))
+            if len(self.song_item) > BATCH_SIZE:
+                try:
+                    self.db['song'].insert_many(self.song_item, False)
+                except BulkWriteError:
+                    pass
+                finally:
+                    self.song_item = []
         elif isinstance(item, AlbumItem):
-            self.db['album'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
+            self.album_item.append(dict(item))
+            if len(self.album_item) > BATCH_SIZE:
+                try:
+                    self.db['album'].insert_many(self.album_item, False)
+                except BulkWriteError:
+                    pass
+                finally:
+                    self.album_item = []
         elif isinstance(item, ArtistItem):
-            self.db['artist'].update_one({'id': item['id']}, {'$setOnInsert': dict(item)}, True)
+            self.artist_item.append(dict(item))
+            if len(self.artist_item) > BATCH_SIZE:
+                try:
+                    self.db['artist'].insert_many(self.artist_item, False)
+                except BulkWriteError:
+                    pass
+                finally:
+                    self.artist_item = []
         return item
