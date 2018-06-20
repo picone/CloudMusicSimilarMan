@@ -30,3 +30,7 @@ a:visited {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.vertical-middle-table tr td {
+    vertical-align: middle !important;
+}

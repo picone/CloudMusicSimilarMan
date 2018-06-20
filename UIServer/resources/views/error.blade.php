@@ -4,6 +4,9 @@
 
 @section('content')
     <div class="alert alert-{{ $type ?? 'danger' }}" role="alert">
-        {{ $message ?? '系统遇到错误了QAQ' }}
+        <div>{{ $message or '系统遇到错误了QAQ' }}</div>
+        @if(isset($backUrl))
+            <a href="{{ $backUrl }}">返回</a>
+        @endif
     </div>
 @endsection

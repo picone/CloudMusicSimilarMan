@@ -10435,3 +10435,7 @@ a:visited {
   text-overflow: ellipsis;
 }
 
+.vertical-middle-table tr td {
+  vertical-align: middle !important;
+}
+
