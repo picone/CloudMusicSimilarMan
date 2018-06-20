@@ -15,12 +15,12 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="mb-0">
-                    <button class="btn btn-link show" data-toggle="collapse" data-target="#longestSong">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#longestSong">
                         时间最长的歌曲
                     </button>
                 </h5>
             </div>
-            <div id="longestSong" class="collapse collapsed" data-parent="#accordion">
+            <div id="longestSong" class="collapse show" data-parent="#accordion">
                 <div class="card-body">
                     是他是他就是他，名字叫《{{ $longestSong->name }}》，长度为{{ round($longestSong->length/1000/60) }}分钟，<a href="https://music.163.com/#/song?id={{ $longestSong->id }}" target="_blank">点击这里收听</a>。
                 </div>
@@ -29,12 +29,12 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#shortestSong" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#shortestSong" aria-expanded="false" aria-controls="collapseTwo">
                         时间最短的歌曲
                     </button>
                 </h5>
             </div>
-            <div id="shortestSong" class="collapse collapsed" data-parent="#accordion">
+            <div id="shortestSong" class="collapse" data-parent="#accordion">
                 <div class="card-body">
                     没错，最快的歌就是他，名字叫《{{ $shortestSong->name }}》，只有{{ $shortestSong->length }}毫秒，<a href="https://music.163.com/#/song?id={{ $shortestSong->id }}" target="_blank">点击这里收听</a>。
                 </div>

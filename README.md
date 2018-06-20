@@ -20,6 +20,22 @@
 
 用户页面渲染，结果缓存等。[详细内容](https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer)
 
+## 捐赠
+
+如果你觉得我的项目对你有帮助，欢迎捐赠。
+
+<table>
+  <tr>
+    <th width="50%">微信</th>
+    <th width="50%">支付宝</th>
+  </tr>
+  <tr></tr>
+  <tr align="center">
+    <td><img width="70%" src="https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer/public/img/wechat.png"></td>
+    <td><img width="70%" src="https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer/public/img/alipay.png"></td>
+  </tr>
+</table>
+
 ## LICENSE
 
 你可以在[GPL 3.0](https://github.com/picone/CloudMusicSimilarMan/blob/master/LICENSE)许可下自由使用本项目。
