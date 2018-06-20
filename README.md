@@ -31,8 +31,8 @@
   </tr>
   <tr></tr>
   <tr align="center">
-    <td><img width="70%" src="https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer/public/img/wechat.png"></td>
-    <td><img width="70%" src="https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer/public/img/alipay.png"></td>
+    <td><img width="70%" src="https://raw.githubusercontent.com/picone/CloudMusicSimilarMan/master/UIServer/public/img/wechat.png"></td>
+    <td><img width="70%" src="https://raw.githubusercontent.com/picone/CloudMusicSimilarMan/master/UIServer/public/img/alipay.png"></td>
   </tr>
 </table>
 
