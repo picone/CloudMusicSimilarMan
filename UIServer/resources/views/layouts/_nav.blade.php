@@ -8,10 +8,10 @@
             <li class="nav-item {{ request()->path() == '/' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/') }}">搜相似</a>
             </li>
-            <li class="nav-item {{ request()->path() == '/rank' ? 'active' : '' }}">
+            <li class="nav-item {{ request()->path() == 'rank' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/rank') }}">排行榜</a>
             </li>
-            <li class="nav-item {{ request()->path() == '/donate' ? 'active' : '' }}">
+            <li class="nav-item {{ request()->path() == 'donate' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/donate') }}">捐赠</a>
             </li>
         </ul>

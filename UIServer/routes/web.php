@@ -19,6 +19,8 @@ Route::get('/search/user', 'SearchController@user');
 
 Route::get('/intersection/user/{id}', 'IntersectionController@user')->where(['id' => '[0-9]+']);
 
+Route::get('/rank', 'RankController@show');
+
 Route::get('/donate', function() {
     return view('donate');
 });

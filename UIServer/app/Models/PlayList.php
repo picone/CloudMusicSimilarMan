@@ -13,13 +13,13 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 /**
  * Class PlayList
  * @package App\Models
- * @property $song_ids array
+ * @property $song_ids int[]
  */
 class PlayList extends Eloquent
 {
     protected $table = 'play_list';
 
     public function songs() {
-        return Song::where('id', 'in', $this->song_ids);
+        return Song::rawWhere(['id' => ['$in' => $this->song_ids]]);
     }
 }

@@ -10,11 +10,15 @@
 
 ### 后台服务
 
-处理用户交集结果请求，求出交集最多的用户。
+处理用户交集结果请求，求出交集最多的用户。项目试用Golang开发，应用[grpc](https://github.com/grpc/grpc-go)进行RPC通讯。
+
+#### 特性
+
+- 求交集使用RCF算法，参考《Faster upper bounding of intersection sizes》
 
 ### 前台渲染
 
-用户页面渲染，结果缓存等。
+用户页面渲染，结果缓存等。[详细内容](https://github.com/picone/CloudMusicSimilarMan/tree/master/UIServer)
 
 ## LICENSE
 
