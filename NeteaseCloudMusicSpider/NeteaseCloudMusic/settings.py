@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'NeteaseCloudMusic.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Linux; Android; Nexus 5) Mobile Safari%d/%d'
+# USER_AGENT = 'Mozilla/5.0 (Linux; Android; Nexus 5) Mobile Safari%d/%d'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -55,7 +55,7 @@ SPIDER_MIDDLEWARES = {
 # Enable or disable downloader response
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    #'NeteaseCloudMusic.middlewares.ProxyMiddleware.ProxyMiddleware': 543,
+    'NeteaseCloudMusic.middlewares.ProxyMiddleware.ProxyMiddleware': 543,
 }
 
 # Enable or disable extensions

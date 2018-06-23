@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import random
 
 import scrapy
+from scrapy import Request
 
 from NeteaseCloudMusic.items.PlayListItem import PlayListItem
 from NeteaseCloudMusic.items.UserProfileInfoItem import UserProfileInfoItem
 from NeteaseCloudMusic.requests.WeapiRequest import WeapiRequest
 
-user_profile_url = 'http://music.163.com/weapi/share/userprofile/info'
+user_profile_url = 'https://music.163.com/weapi/share/userprofile/info'
 
 
 class MusicSpider(scrapy.Spider):
@@ -17,15 +17,19 @@ class MusicSpider(scrapy.Spider):
     allowed_domains = ['music.163.com']
 
     def start_requests(self):
-        for i in range(6941323, 1000000000):
+        user_agent = []
+        with open('user_agent.txt', 'r') as f:
+            for line in f:
+                user_agent.append(line.strip('\n'))
+        for i in range(16356819, 1000000000):
             yield WeapiRequest(
                 url=user_profile_url,
                 formdata={
                     'userId': i,
                 },
-                referer='http://music.163.com/m/user/%d' % i,
+                referer='https://music.163.com/m/user/%d' % i,
                 meta=dict(user_id=i),
-                ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/%s' % os.urandom(random.randint(20, 50)),
+                ua=random.choice(user_agent),
             )
 
     def parse(self, response):

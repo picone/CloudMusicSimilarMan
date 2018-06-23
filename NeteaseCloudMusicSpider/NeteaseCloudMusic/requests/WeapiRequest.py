@@ -37,6 +37,7 @@ class WeapiRequest(Request):
         if ua:
             self.headers['User-Agent'] = ua
         self.headers.setdefault(b'Content-Type', b'application/x-www-form-urlencoded')
+        self.headers.setdefault(b'Host', b'music.163.com')
         if formdata:
             self._set_body(urlencode(formdata))
 

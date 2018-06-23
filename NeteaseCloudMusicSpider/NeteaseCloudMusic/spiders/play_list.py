@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import random
 
 import pymongo
@@ -11,12 +10,18 @@ from NeteaseCloudMusic.items.song import SongItem, ArtistItem, AlbumItem
 from NeteaseCloudMusic.requests.WeapiRequest import WeapiRequest
 
 PLAY_LIST_LIMIT = 1000
-PLAY_LIST_REQUEST_URL = 'http://music.163.com/weapi/v3/playlist/detail'
+PLAY_LIST_REQUEST_URL = 'https://music.163.com/weapi/v3/playlist/detail'
 
 
 class PlayListSpider(scrapy.Spider):
     name = 'play_list'
     allowed_domains = ['music.163.com']
+
+    def __int__(self):
+        self.user_agent = []
+        with open('user_agent.txt', 'r') as f:
+            for line in f:
+                self.user_agent.append(line.strip('\n'))
 
     def start_requests(self):
         mongo_uri = self.settings.get('MONGO_URI'),
@@ -33,9 +38,9 @@ class PlayListSpider(scrapy.Spider):
                     'n': PLAY_LIST_LIMIT,
                     'offset': 0,
                 },
-                referer='http://music.163.com/m/playlist?id=%d' % item['id'],
+                referer='https://music.163.com/m/playlist?id=%d' % item['id'],
                 meta=dict(play_list_id=item['id'], offset=0),
-                ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_%s)' % os.urandom(random.randint(20, 50)),
+                ua=random.choice(self.user_agent),
             )
 
     def parse(self, response):
@@ -82,7 +87,7 @@ class PlayListSpider(scrapy.Spider):
                         'n': PLAY_LIST_LIMIT,
                         'offset': meta['offset'],
                     },
-                    referer='http://music.163.com/m/playlist?id=%d' % meta['play_list_id'],
+                    referer='https://music.163.com/m/playlist?id=%d' % meta['play_list_id'],
                     meta=meta,
-                    ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_%s)' % os.urandom(random.randint(20, 50)),
+                    ua=random.choice(self.user_agent),
                 )
